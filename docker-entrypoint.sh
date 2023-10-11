@@ -25,7 +25,7 @@ PHP_COMMAND='/usr/local/bin/php /app/run > /app/logs/freenom_cron.log 2>&1'
 # 指定脚本执行时间
 if [ -z "${RUN_AT}" ]; then
     minute=$(shuf -i 0-59 -n 1)
-    hour=$(shuf -i 6-23 -n 1)
+    hour=$(shuf -i 18-23 -n 1)
     CRON_COMMAND="${minute} ${hour} * * * ${PHP_COMMAND}"
     echo -e "[${green}Info${plain}] 已自动指定执行时间，续期任务将在北京时间每天 「${hour}:${minute}」 执行"
     echo -e "[${green}Info${plain}] 在没有手动指定 RUN_AT 环境变量的情况下，每次重启容器，程序都会重新在 06 ~ 23 点全时段中自动随机指定一个执行时间，目的是防止很多人在同一个时间点执行任务导致 Freenom 无法稳定提供服务"
